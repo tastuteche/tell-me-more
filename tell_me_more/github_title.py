@@ -12,12 +12,12 @@ from cachecontrol import CacheControlAdapter
 
 
 def serialize_session(session):
-    with open("save.p", "wb") as f:
+    with open("session.save.p", "wb") as f:
         pk.dump(session, f)
 
 
 def deserialize_session():
-    with open("save.p", "rb") as f:
+    with open("session.save.p", "rb") as f:
         return pk.load(f)
 
 
@@ -47,8 +47,8 @@ sess = CacheControl(session,
 
 
 loop = asyncio.get_event_loop()
-# p = ProcessPoolExecutor(2)  # Create a ProcessPool with 2 processes
-p = ThreadPoolExecutor(2)
+p = ProcessPoolExecutor(2)  # Create a ProcessPool with 2 processes
+#p = ThreadPoolExecutor(2)
 
 
 async def get_title(url):
