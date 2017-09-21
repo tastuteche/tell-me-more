@@ -76,5 +76,12 @@ async def main():
     print(all_data)
 
 if __name__ == '__main__':
-    loop = asyncio.get_event_loop()
-    loop.run_until_complete(main())
+
+    try:
+        with p:
+            #loop = asyncio.get_event_loop()
+            loop.run_until_complete(main())
+    finally:
+        # see: https://docs.python.org/3/library/asyncio-eventloop.html#asyncio.AbstractEventLoop.shutdown_asyncgens
+        loop.run_until_complete(loop.shutdown_asyncgens())
+        loop.close()
